@@ -12,8 +12,9 @@ const graphqlResolvers = require('./graphql/resolvers/index');
 const isAuth = require('./middleware/is-auth');
 
 /*Adds the react production build to serve react requests*/
+app.use(express.static(path.join(__dirname, 'frontend/public/')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'./frontend/public/index.html'));
+  res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
 });
 
 app.use((req, res, next) => {
