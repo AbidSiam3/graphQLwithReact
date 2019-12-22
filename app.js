@@ -33,10 +33,10 @@ app.use('/graphql', graphHttp({
     graphiql: true
 }));
 /*Adds the react production build to serve react requests*/
-app.use(express.static('frontend/public'));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
-});
+// app.use(express.static('frontend/public'));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
+// });
 // console.log(process.env , process.env.MONGO_USER, process.env.MONGO_PASSWORD);
 const port = process.env.PORT || 8000;
 const URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@multisiam-pugea.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
