@@ -23,9 +23,7 @@ app.use((req, res, next) => {
     next();
   });
 app.use(bodyParser.json());
-// app.get('/', (req,res ,next)=> {
-//     res.send("Hello!!");
-// });
+
 app.use(isAuth);
 app.use('/graphql', graphHttp({
     schema: graphqlSchema,
