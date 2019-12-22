@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
@@ -12,7 +13,7 @@ const isAuth = require('./middleware/is-auth');
 
 /*Adds the react production build to serve react requests*/
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
+  res.sendFile(path.join(__dirname+'./frontend/public/index.html'));
 });
 
 app.use((req, res, next) => {
@@ -34,9 +35,12 @@ app.use('/graphql', graphHttp({
     rootValue: graphqlResolvers,
     graphiql: true
 }));
+
+// console.log(process.env , process.env.MONGO_USER, process.env.MONGO_PASSWORD);
 const port = process.env.PORT || 8000;
-// const URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@multisiam-pugea.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
-mongoose.connect(`mongodb+srv://siam:123456789SA@multisiam-pugea.mongodb.net/eventDB?retryWrites=true&w=majority`, {useNewUrlParser:  true, useUnifiedTopology: true})
+const URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@multisiam-pugea.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`;
+// mongoose.connect(`mongodb+srv://siam:123456789SA@multisiam-pugea.mongodb.net/eventDB?retryWrites=true&w=majority`, {useNewUrlParser:  true, useUnifiedTopology: true})
+mongoose.connect(URI, {useNewUrlParser:  true, useUnifiedTopology: true})
 .then(()=> {
     app.listen(port, console.log("server running 8000"));
 }).catch(err => {
