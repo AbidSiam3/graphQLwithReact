@@ -1,7 +1,7 @@
 {
     "env": {
         "MONGO_USER": "siam",
-        "MONGO_PASSWORD": "JI2ZFSvUFh1NklpV",
+        "MONGO_PASSWORD": "123456789SA",
         "MONGO_DB": "eventDB"
     }
 }
