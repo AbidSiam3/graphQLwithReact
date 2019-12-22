@@ -33,7 +33,7 @@ app.use('/graphql', graphHttp({
     graphiql: true
 }));
 /*Adds the react production build to serve react requests*/
-app.use(express.static(path.join(__dirname, 'frontend/public/')));
+app.use(express.static('frontend/public'));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/frontend/public/index.html'));
 });
